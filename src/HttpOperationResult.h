@@ -18,6 +18,8 @@ public:
 	double downloadTime;
 	double totalSize;
 
+	/*
 	~HttpOperationResult();
+	*/
 };
 

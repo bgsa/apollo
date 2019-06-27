@@ -1,3 +1,5 @@
+#ifdef WINDOWS
+
 #include "FileWindows.h"
 
 FileWindows::FileWindows(std::string filename)
@@ -25,3 +27,5 @@ FileWindows::~FileWindows()
 	if (file != nullptr)
 		fclose(file);
 }
+
+#endif

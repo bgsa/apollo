@@ -17,7 +17,7 @@ class Factory
 {
 public:
 
-	static IFileManager * getFileManagerInstance() 
+	static IFileManager * getFileManagerInstance()
 	{
 #ifdef ANDROID
 		return new FileManagerAndroid;

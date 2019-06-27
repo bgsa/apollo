@@ -1,6 +1,6 @@
+/*
 #pragma once
 
-/*
 #ifdef WINDOWS
 
 #include <iostream>

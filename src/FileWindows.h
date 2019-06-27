@@ -1,3 +1,5 @@
+#ifdef WINDOWS
+
 #pragma once
 
 #include <fstream>
@@ -19,3 +21,4 @@ public:
 	API_INTERFACE ~FileWindows();
 };
 
+#endif

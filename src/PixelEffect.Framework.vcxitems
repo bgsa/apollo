@@ -14,8 +14,8 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)BinaryTree.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)BinaryTreeNode.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FileManagerWindows.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FileWindows.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HttpConnection.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HttpConnectionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HttpOperationResult.cpp" />
@@ -31,11 +31,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)BinaryTree.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)BinaryTreeNode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)apollo.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ColorRGB.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ColorRGBA.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Factory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FileManagerWindows.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FileWindows.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HttpConnection.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HttpConnectionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HttpOperationResult.h" />

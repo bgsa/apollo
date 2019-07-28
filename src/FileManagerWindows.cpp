@@ -6,6 +6,7 @@
 #include <errno.h>
 #include <string.h>
 #include <locale.h>
+#include <cassert>
 
 bool checkFile(std::ifstream& file, const char * filename)
 {
@@ -33,7 +34,6 @@ std::vector<std::string> FileManagerWindows::getFilesFromResource()
 	files.push_back("teste.txt");
 	return files;
 }
-
 
 std::vector<std::string> FileManagerWindows::getFilesFromFolder(std::string folder, std::string suffix)
 {
@@ -69,42 +69,59 @@ std::vector<std::string> FileManagerWindows::getFilesFromFolder(std::string fold
 bool FileManagerWindows::exists(const char * filename)
 {
 	std::ifstream file(filename);
-    return file.good();
+
+	bool result = file.good();
+
+	file.close();
+
+    return result;
 }
 
 std::string FileManagerWindows::readTextFile(const char * filename)
 {
-	std::ifstream file(filename);
+	std::ifstream file(filename, std::ios::in);
 
-	file.seekg(0, std::ios::end);
+	assert(file.is_open());
+	assert(file.good());
+
+	file.seekg(0, file.end);
 
 	size_t size = (size_t) file.tellg();
 
-	std::string content(size, ' ');
+	char* content = (char*) std::malloc(size);
 
-	file.seekg(0);
-	file.read(&content[0], size);
+	file.seekg(0, file.beg);
+	file.read(content, size);
+	content[size] = '\0';
 
-	return content;
+	file.close();
+
+	return std::string(content);
 }
 
 char* FileManagerWindows::readBinaryFile(const char * filename, size_t& size)
 {
-	std::ifstream file(filename, std::ios::binary | std::ios::ate);
+	std::ifstream file(filename, std::ios::in | std::ios::binary | std::ios::ate);
+
+	assert(file.is_open());
+	assert(file.good());
+
 	size = (size_t) file.tellg();
+
 	file.seekg(0, std::ios::beg);
 
-	char* content = (char*) malloc(size);
+	char* content = (char*) std::malloc(size);
 
 	file.read(content, size);
+
+	file.close();
 
 	return content;
 }
 
 IFile* FileManagerWindows::open(std::string filename)
 {
-	FileWindows* file = new FileWindows(filename);
-	return file;
+	return new FileWindows(filename);
 }
 
 #endif

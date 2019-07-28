@@ -52,6 +52,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ISubSystem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)KeyboardInputDevice.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)KeyboardInputDeviceHandler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Log.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NetworkSubSystem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Object.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PointerInputDevice.h" />

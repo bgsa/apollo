@@ -10,13 +10,11 @@
 #include <android/log.h>
 #endif
 
-using namespace std;
-
 class Log
 {
 public:
 
-	API_INTERFACE static void error(string errorMessage)
+	API_INTERFACE static void error(std::string errorMessage)
 	{
 #ifdef ANDROID
 		__android_log_print(ANDROID_LOG_ERROR, "ERROR", "%s", errorMessage.c_str());
@@ -26,7 +24,7 @@ public:
 #endif
 	}
 
-	API_INTERFACE static void info(string message)
+	API_INTERFACE static void info(std::string message)
 	{
 #ifdef ANDROID
 		__android_log_print(ANDROID_LOG_INFO, "INFO", "%s", message.c_str());
@@ -36,7 +34,7 @@ public:
 #endif		
 	}
 
-	API_INTERFACE static void debug(string message)
+	API_INTERFACE static void debug(std::string message)
 	{
 #ifdef ANDROID
 		__android_log_print(ANDROID_LOG_DEBUG, "DEBUG", "%s", message.c_str());
@@ -48,7 +46,7 @@ public:
 
 	API_INTERFACE static void onError(int errorCode, const char* description)
 	{
-		error("Error: " + string(description));
+		error("Error: " + std::string(description));
 	}
 
 };

@@ -37,16 +37,18 @@
 	}
 #endif
 
+std::mutex locker;
+
 static void* initialPointer = NULL;
 static void* lastPointer = NULL;
 static void* currentPointer = NULL;
 
-MemoryAllocatorManager::MemoryAllocatorManager() 
+MemoryAllocatorManager::MemoryAllocatorManager()
 {
 	;
 }
 
-void MemoryAllocatorManager::init(size_t initialSize)
+void MemoryAllocatorManager::init(size_t initialSize) noexcept
 {
 	initialPointer = std::malloc(initialSize);
 
@@ -56,12 +58,17 @@ void MemoryAllocatorManager::init(size_t initialSize)
 	lastPointer = ((int*)initialPointer) + initialSize;
 }
 
-void MemoryAllocatorManager::free(void* buffer)
+void MemoryAllocatorManager::free(void* buffer) noexcept
 {
-	currentPointer = buffer;
+	locker.lock();
+
+	if (currentPointer > buffer) // memory has already freed by previous pointer
+		currentPointer = buffer;
+
+	locker.unlock();
 }
 
-size_t MemoryAllocatorManager::deviceMemorySize()
+size_t MemoryAllocatorManager::deviceMemorySize() noexcept
 {
 #ifdef WINDOWS
 	MEMORYSTATUSEX status;
@@ -73,52 +80,73 @@ size_t MemoryAllocatorManager::deviceMemorySize()
 #endif
 }
 
-void* MemoryAllocatorManager::alloc(size_t size)
+void* MemoryAllocatorManager::alloc(size_t size) noexcept
 {
+	locker.lock();
+
 	assert(!hasAvailableMemory(size));
 
 	void* buffer = currentPointer;
 
 	currentPointer = ((int*)currentPointer) + size;
 
+	locker.unlock();
 	return buffer;
 }
 
-void* MemoryAllocatorManager::alloc(size_t count, size_t size)
+void* MemoryAllocatorManager::alloc(size_t count, size_t size) noexcept
 {
 	return MemoryAllocatorManager::alloc(count * size);
 }
 
-void MemoryAllocatorManager::resize(size_t newSize)
+void* MemoryAllocatorManager::copy(void* source, size_t size) noexcept
 {
+	void* newBuffer = ALLOC_SIZE(size);
+
+	std::memcpy(newBuffer, source, size);
+
+	return newBuffer;
+}
+
+void MemoryAllocatorManager::resize(size_t newSize) noexcept
+{
+	locker.lock();
+
 	initialPointer = std::realloc(initialPointer, newSize);
 
 	assert(initialPointer != NULL);
 
 	currentPointer = initialPointer;
 	lastPointer = ((int*)initialPointer) + newSize;
+
+	locker.unlock();
 }
 
-bool MemoryAllocatorManager::hasAvailableMemory(size_t size)
+bool MemoryAllocatorManager::hasAvailableMemory(size_t size) noexcept
 {
 	return ((int*)currentPointer) + size - ((int*)lastPointer) > 0;
 }
 
-size_t MemoryAllocatorManager::memorySize()
+size_t MemoryAllocatorManager::memorySize() noexcept
 {
 	return ((int*)lastPointer) - ((int*)initialPointer);
 }
 
-size_t MemoryAllocatorManager::availableMemorySize()
+size_t MemoryAllocatorManager::availableMemorySize() noexcept
 {
 	return ((int*)lastPointer) - ((int*)currentPointer);
 }
 
-void MemoryAllocatorManager::release()
+void MemoryAllocatorManager::release() noexcept
 {
+	locker.lock();
+
+	lastPointer = NULL;
+	currentPointer = NULL;
+
 	std::free(initialPointer);
 
 	initialPointer = NULL;
-	lastPointer = NULL;
-	currentPointer = NULL;
+
+	locker.unlock();
 }

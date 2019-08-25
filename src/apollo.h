@@ -33,3 +33,4 @@ extern "C" {
 
 #include <cassert>
 #include "Log.hpp"
+#include "MemoryAllocatorManager.h"

@@ -23,6 +23,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ImageBMP.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ImageJPEG.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ImagePNG.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MemoryAllocatorManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)NetworkSubSystem.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SoundEffect.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SoundSubSystem.cpp" />
@@ -53,6 +54,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)KeyboardInputDevice.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)KeyboardInputDeviceHandler.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Log.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MemoryAllocatorManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)NetworkSubSystem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Object.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PointerInputDevice.h" />

@@ -31,4 +31,5 @@ extern "C" {
 	const char END_OF_LINE = '\n';
 }
 
+#include <cassert>
 #include "Log.hpp"

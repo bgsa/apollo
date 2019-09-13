@@ -50,17 +50,23 @@ MemoryAllocatorManager::MemoryAllocatorManager()
 
 void MemoryAllocatorManager::init(size_t initialSize) noexcept
 {
+	locker.lock();
+
 	initialPointer = std::malloc(initialSize);
 
 	assert(initialPointer != NULL);
 
 	currentPointer = initialPointer;
 	lastPointer = ((int*)initialPointer) + initialSize;
+
+	locker.unlock();
 }
 
 void MemoryAllocatorManager::free(void* buffer) noexcept
 {
 	locker.lock();
+
+	assert(buffer >= initialPointer && buffer <= lastPointer);
 
 	if (currentPointer > buffer) // memory has already freed by previous pointer
 		currentPointer = buffer;
@@ -84,7 +90,7 @@ void* MemoryAllocatorManager::alloc(size_t size) noexcept
 {
 	locker.lock();
 
-	assert(!hasAvailableMemory(size));
+	assert(hasAvailableMemory(size));
 
 	void* buffer = currentPointer;
 
@@ -124,7 +130,7 @@ void MemoryAllocatorManager::resize(size_t newSize) noexcept
 
 bool MemoryAllocatorManager::hasAvailableMemory(size_t size) noexcept
 {
-	return ((int*)currentPointer) + size - ((int*)lastPointer) > 0;
+	return ((int*)lastPointer) - ((int*)currentPointer) + size > 0;
 }
 
 size_t MemoryAllocatorManager::memorySize() noexcept

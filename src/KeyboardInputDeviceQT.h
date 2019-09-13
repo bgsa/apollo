@@ -15,7 +15,7 @@ class API_INTERFACE KeyboardInputDeviceQT : public QObject, public KeyboardInput
 
 private:
 	QWidget* window = nullptr;
-	vector<KeyboardInputDeviceHandler*> handlersKeyboard;
+	std::vector<KeyboardInputDeviceHandler*> handlersKeyboard;
 
 public:
 	void init(QWidget* window);

@@ -10,6 +10,11 @@
 #include <android/log.h>
 #endif
 
+#ifdef MS_TEST
+	#include "CppUnitTest.h"
+	using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+#endif
+
 class Log
 {
 public:
@@ -22,6 +27,9 @@ public:
 #if defined(WINDOWS) || defined(LINUX) || defined(MAC)
 		printf("%s%c", errorMessage.c_str(), END_OF_LINE);
 #endif
+#ifdef MS_TEST
+		Logger::WriteMessage(errorMessage.c_str());
+#endif
 	}
 
 	API_INTERFACE static void info(std::string message)
@@ -31,7 +39,10 @@ public:
 #endif
 #if defined(WINDOWS) || defined(LINUX) || defined(MAC)
 		printf("%s%c", message.c_str(), END_OF_LINE);
-#endif		
+#endif	
+#ifdef MS_TEST
+		Logger::WriteMessage(message.c_str());
+#endif
 	}
 
 	API_INTERFACE static void debug(std::string message)
@@ -42,6 +53,9 @@ public:
 #if defined(WINDOWS) || defined(LINUX) || defined(MAC)
 		printf("%s%c", message.c_str(), END_OF_LINE);
 #endif		
+#ifdef MS_TEST
+		Logger::WriteMessage(message.c_str());
+#endif
 	}
 
 	API_INTERFACE static void onError(int errorCode, const char* description)

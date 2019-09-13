@@ -13,7 +13,9 @@ float* getMousePosition()
 	QRect mouseScreenGeometry = QGuiApplication::primaryScreen()->geometry();
 	QPoint localCursorPosition = globalCursorPosition - mouseScreenGeometry.topLeft();
 
-	float position[2] = { float(localCursorPosition.x()), screenHeight - float(localCursorPosition.y()) };
+	float* position = new float[2];
+	position[0] = float(localCursorPosition.x());
+	position[1] = screenHeight - float(localCursorPosition.y());
 
 	return position;
 }
@@ -65,7 +67,7 @@ void PointerInputDeviceQT::addHandler(PointerInputDeviceHandler* handler)
 
 void PointerInputDeviceQT::removeHandler(PointerInputDeviceHandler* handler)
 {
-	vector<PointerInputDeviceHandler*>::iterator item = std::find(handlersPointer.begin(), handlersPointer.end(), handler);
+	std::vector<PointerInputDeviceHandler*>::iterator item = std::find(handlersPointer.begin(), handlersPointer.end(), handler);
 
 	if (item != handlersPointer.end())
 		handlersPointer.erase(item);

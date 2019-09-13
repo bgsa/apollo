@@ -25,7 +25,7 @@ void WindowInputDeviceQT::addHandler(WindowInputDeviceHandler* handler)
 
 void WindowInputDeviceQT::removeHandler(WindowInputDeviceHandler* handler)
 {
-	vector<WindowInputDeviceHandler*>::iterator item = find(handlers.begin(), handlers.end(), handler);
+	std::vector<WindowInputDeviceHandler*>::iterator item = find(handlers.begin(), handlers.end(), handler);
 
 	if (item != handlers.end())
 		handlers.erase(item);

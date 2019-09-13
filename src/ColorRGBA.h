@@ -54,14 +54,6 @@ public:
 		return toVec4()[index];
 	}
 
-	/// <summary>
-	/// Implicit Convertion to array
-	/// </summary>
-	API_INTERFACE operator T* ()
-	{
-		return new T[4]{ Red, Green, Blue, Alpha };
-	}
-
 };
 
 typedef ColorRGBA<float> ColorRGBAf;

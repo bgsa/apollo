@@ -15,7 +15,7 @@ class API_INTERFACE WindowInputDeviceQT : public QObject, public WindowInputDevi
 
 private:
 	QWidget* window;
-	vector<WindowInputDeviceHandler*> handlers;
+	std::vector<WindowInputDeviceHandler*> handlers;
 
 public:
 

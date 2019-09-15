@@ -95,7 +95,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>QT;WINDOWS;API_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>QT_ENABLED;WINDOWS;API_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -106,7 +106,7 @@
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtQml;$(QTDIR)\include\QtQuick;$(QTDIR)\include\QtQuickWidgets;$(QTDIR)\include\QtQuickControls2;$(QTDIR)\include\QtWidgets</IncludePath>
-      <Define>DEBUG;QT;MAJOR_COLUMN_ORDER;WINDOWS;API_EXPORT;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
+      <Define>DEBUG;QT_ENABLED;MAJOR_COLUMN_ORDER;WINDOWS;API_EXPORT;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
     </QtMoc>
     <QtUic>
       <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
@@ -123,7 +123,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>QT;WINDOWS;API_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>QT_ENABLED;WINDOWS;API_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -134,7 +134,7 @@
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtQml;$(QTDIR)\include\QtQuick;$(QTDIR)\include\QtQuickWidgets;$(QTDIR)\include\QtQuickControls2;$(QTDIR)\include\QtWidgets</IncludePath>
-      <Define>DEBUG;QT;MAJOR_COLUMN_ORDER;WINDOWS;API_EXPORT;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
+      <Define>DEBUG;QT_ENABLED;MAJOR_COLUMN_ORDER;WINDOWS;API_EXPORT;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
     </QtMoc>
     <QtUic>
       <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
@@ -153,7 +153,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>QT;WINDOWS;API_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>QT_ENABLED;WINDOWS;API_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -165,7 +165,7 @@
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtQml;$(QTDIR)\include\QtQuick;$(QTDIR)\include\QtQuickWidgets;$(QTDIR)\include\QtQuickControls2;$(QTDIR)\include\QtWidgets</IncludePath>
-      <Define>QT;MAJOR_COLUMN_ORDER;WINDOWS;API_EXPORT;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
+      <Define>QT_ENABLED;MAJOR_COLUMN_ORDER;WINDOWS;API_EXPORT;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
     </QtMoc>
     <QtUic>
       <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
@@ -184,7 +184,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>QT;WINDOWS;API_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>QT_ENABLED;WINDOWS;API_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -197,7 +197,7 @@
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtOpenGL;$(QTDIR)\include\QtQml;$(QTDIR)\include\QtQuick;$(QTDIR)\include\QtQuickWidgets;$(QTDIR)\include\QtQuickControls2;$(QTDIR)\include\QtWidgets</IncludePath>
-      <Define>QT;MAJOR_COLUMN_ORDER;WINDOWS;API_EXPORT;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
+      <Define>QT_ENABLED;MAJOR_COLUMN_ORDER;WINDOWS;API_EXPORT;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
     </QtMoc>
     <QtUic>
       <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
@@ -223,6 +223,7 @@
     <ClCompile Include="src\ImagePNG.cpp" />
     <ClCompile Include="src\KeyboardInputDeviceGLFW.cpp" />
     <ClCompile Include="src\KeyboardInputDeviceQT.cpp" />
+    <ClCompile Include="src\MemoryAllocatorManager.cpp" />
     <ClCompile Include="src\NetworkSubSystem.cpp" />
     <ClCompile Include="src\PointerInputDeviceGLFW.cpp" />
     <ClCompile Include="src\PointerInputDeviceQT.cpp" />
@@ -240,7 +241,6 @@
     <ClInclude Include="src\ColorRGBA.h" />
     <ClInclude Include="src\DisplayDevice.h" />
     <ClInclude Include="src\DisplayDeviceGLFW.h" />
-    <ClInclude Include="src\DisplayDeviceQT.h" />
     <ClInclude Include="src\Factory.h" />
     <ClInclude Include="src\FileManagerWindows.h" />
     <ClInclude Include="src\FileWindows.h" />
@@ -261,6 +261,7 @@
     <ClInclude Include="src\KeyboardInputDeviceGLFW.h" />
     <ClInclude Include="src\KeyboardInputDeviceHandler.h" />
     <ClInclude Include="src\Log.hpp" />
+    <ClInclude Include="src\MemoryAllocatorManager.h" />
     <ClInclude Include="src\NetworkSubSystem.h" />
     <ClInclude Include="src\Object.h" />
     <ClInclude Include="src\PointerInputDevice.h" />
@@ -284,6 +285,7 @@
     <QtMoc Include="src\KeyboardInputDeviceQT.h" />
     <QtMoc Include="src\WindowInputDeviceQT.h" />
     <QtMoc Include="src\PointerInputDeviceQT.h" />
+    <QtMoc Include="src\DisplayDeviceQT.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\PixelEffect.Framework.vcxitems" />

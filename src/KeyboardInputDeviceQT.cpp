@@ -1,6 +1,6 @@
-#include "KeyboardInputDeviceQT.h"
+#ifdef QT_ENABLED
 
-#ifdef QT
+#include "KeyboardInputDeviceQT.h"
 
 void KeyboardInputDeviceQT::init(QWidget* window)
 {

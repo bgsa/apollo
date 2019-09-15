@@ -1,6 +1,10 @@
-#ifdef QT
+#ifdef QT_ENABLED
 
 #pragma once
+
+#ifdef Q_COMPILER_CONSTEXPR
+	#undef Q_COMPILER_CONSTEXPR
+#endif
 
 #include "apollo.h"
 #include "WindowInputDevice.h"
@@ -9,7 +13,7 @@
 #include <qapplication.h>
 #include <qevent.h>
 
-class API_INTERFACE WindowInputDeviceQT : public QObject, public WindowInputDevice
+class WindowInputDeviceQT : public QObject, public WindowInputDevice
 {
 	Q_OBJECT
 
@@ -19,25 +23,25 @@ private:
 
 public:
 
-	static WindowInputDeviceQT* getInstance();
+	API_INTERFACE static WindowInputDeviceQT* getInstance();
 
-	void init(QWidget* window);
-	void update(long long elapsedTime);
+	API_INTERFACE void init(QWidget* window);
+	API_INTERFACE void update(long long elapsedTime);
 
-	void show();
-	void hide();
-	void move(int previousPosition[2], int newPosition[2]);
-	void resize(int width, int height);
-	void close();
-	void maximize();
-	void fullscreen();
-	void focusIn();
-	void focusOut();
+	API_INTERFACE void show();
+	API_INTERFACE void hide();
+	API_INTERFACE void move(int previousPosition[2], int newPosition[2]);
+	API_INTERFACE void resize(int width, int height);
+	API_INTERFACE void close();
+	API_INTERFACE void maximize();
+	API_INTERFACE void fullscreen();
+	API_INTERFACE void focusIn();
+	API_INTERFACE void focusOut();
 
-	void addHandler(WindowInputDeviceHandler* handler);
-	void removeHandler(WindowInputDeviceHandler* handler);
+	API_INTERFACE void addHandler(WindowInputDeviceHandler* handler);
+	API_INTERFACE void removeHandler(WindowInputDeviceHandler* handler);
 
-	bool eventFilter(QObject *object, QEvent *event);
+	API_INTERFACE bool eventFilter(QObject *object, QEvent *event);
 
 };
 

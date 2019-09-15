@@ -1,4 +1,4 @@
-#ifdef QT
+#ifdef QT_ENABLED
 
 #include "DisplayDeviceQT.h"
 

@@ -1,6 +1,6 @@
-#include "WindowInputDeviceQT.h"
+#ifdef QT_ENABLED
 
-#ifdef QT
+#include "WindowInputDeviceQT.h"
 
 static WindowInputDeviceQT* instanceWindowDevice = nullptr;
 

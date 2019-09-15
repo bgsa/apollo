@@ -1,6 +1,6 @@
-#include "PointerInputDeviceQT.h"
+#ifdef QT_ENABLED
 
-#ifdef QT
+#include "PointerInputDeviceQT.h"
 
 std::vector<PointerInputDeviceHandler*> handlersPointer;
 

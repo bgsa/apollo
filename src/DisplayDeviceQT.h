@@ -1,6 +1,10 @@
-#ifdef QT
+#ifdef QT_ENABLED
 
 #pragma once
+
+#ifdef Q_COMPILER_CONSTEXPR
+	#undef Q_COMPILER_CONSTEXPR
+#endif
 
 #include "apollo.h"
 #include "DisplayDevice.h"
@@ -8,8 +12,9 @@
 #include <QGuiApplication>
 #include <QScreen>
 
-class DisplayDeviceQT : public DisplayDevice
+class DisplayDeviceQT : public QObject, public DisplayDevice
 {
+	Q_OBJECT
 
 private:
 	QWidget* window;

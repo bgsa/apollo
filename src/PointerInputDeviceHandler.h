@@ -1,6 +1,7 @@
 #pragma once
 
 #include "apollo.h"
+#include "InputDeviceHandler.h"
 
 enum MouseButton {
 	NONE,
@@ -36,7 +37,7 @@ public:
 	}
 };
 
-class PointerInputDeviceHandler
+class PointerInputDeviceHandler : public InputDeviceHandler
 {
 private:
 	MouseState(*getMouseStateFunction)();

@@ -256,6 +256,7 @@
     <ClInclude Include="src\ImageJPEG.h" />
     <ClInclude Include="src\ImagePNG.h" />
     <ClInclude Include="src\InputDevice.h" />
+    <ClInclude Include="src\InputDeviceHandler.h" />
     <ClInclude Include="src\ISubSystem.h" />
     <ClInclude Include="src\KeyboardInputDevice.h" />
     <ClInclude Include="src\KeyboardInputDeviceGLFW.h" />

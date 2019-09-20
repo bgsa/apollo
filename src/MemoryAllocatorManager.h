@@ -10,10 +10,14 @@
 #define ALLOC(type) (type*)MemoryAllocatorManager::alloc(sizeof(type))
 #define ALLOC_SIZE(size) MemoryAllocatorManager::alloc(size)
 #define ALLOC_ARRAY(type, count) (type*) MemoryAllocatorManager::alloc(count, sizeof(type))
-#define ALLOC_RELEASE(objects) MemoryAllocatorManager::free(objects)
-#define ALLOC_NEW(type) new (MemoryAllocatorManager::alloc(sizeof(type))) type
-#define ALLOC_DELETE(type) delete type; MemoryAllocatorManager::free(type)
+#define ALLOC_RELEASE(object) MemoryAllocatorManager::free(object)
 #define ALLOC_COPY(source, type, count) (type*) MemoryAllocatorManager::copy(source, sizeof(type) * count)
+
+#ifdef __cplusplus
+	#define ALLOC_NEW(type) new (MemoryAllocatorManager::alloc(sizeof(type))) type
+	#define ALLOC_NEW_ARRAY(type, count) new (MemoryAllocatorManager::alloc(sizeof(type) * count)) type[count]
+	#define ALLOC_DELETE(object) ::operator delete(object); MemoryAllocatorManager::free(object)
+#endif
 
 class MemoryAllocatorManager
 {

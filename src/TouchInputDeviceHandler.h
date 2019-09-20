@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include "InputDeviceHandler.h"
 
 using namespace std;
 
@@ -23,7 +24,7 @@ struct TouchItem {
 	TouchPosition currentPosition;
 };
 
-class TouchInputDeviceHandler
+class TouchInputDeviceHandler : public InputDeviceHandler
 {
 private:
 	map<int, TouchItem*> *touchItems;

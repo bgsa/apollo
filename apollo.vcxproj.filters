@@ -224,6 +224,9 @@
     <ClInclude Include="src\MemoryAllocatorManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\InputDeviceHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\PixelEffect.Framework.vcxitems" />

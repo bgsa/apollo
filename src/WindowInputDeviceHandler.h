@@ -1,6 +1,7 @@
 #pragma once
 
 #include "apollo.h"
+#include "InputDeviceHandler.h"
 
 class WindowMoveEvent 
 {
@@ -19,7 +20,7 @@ public:
 	}
 };
 
-class WindowInputDeviceHandler
+class WindowInputDeviceHandler : public InputDeviceHandler
 {
 public:
 	virtual void onHide() {};

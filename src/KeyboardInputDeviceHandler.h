@@ -1,8 +1,9 @@
 #pragma once
 
 #include "apollo.h"
+#include "InputDeviceHandler.h"
 
-class KeyboardInputDeviceHandler
+class KeyboardInputDeviceHandler : public InputDeviceHandler
 {
 private:
 	bool(*isKeyPressedFunction)(int);

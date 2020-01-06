@@ -64,9 +64,10 @@ void MemoryAllocatorManager::init(size_t initialSize) noexcept
 
 void MemoryAllocatorManager::free(void* buffer) noexcept
 {
-	locker.lock();
-
+	assert(buffer != NULL);
 	assert(buffer >= initialPointer && buffer <= lastPointer);
+
+	locker.lock();
 
 	if (currentPointer > buffer) // memory has already freed by previous pointer
 		currentPointer = buffer;
@@ -105,13 +106,18 @@ void* MemoryAllocatorManager::alloc(size_t count, size_t size) noexcept
 	return MemoryAllocatorManager::alloc(count * size);
 }
 
-void* MemoryAllocatorManager::copy(void* source, size_t size) noexcept
+void* MemoryAllocatorManager::copy(const void* source, size_t size) noexcept
 {
 	void* newBuffer = ALLOC_SIZE(size);
 
 	std::memcpy(newBuffer, source, size);
 
 	return newBuffer;
+}
+
+void MemoryAllocatorManager::copy(const void* source, void* destiny, size_t size) noexcept
+{
+	std::memcpy(destiny, source, size);
 }
 
 void MemoryAllocatorManager::resize(size_t newSize) noexcept

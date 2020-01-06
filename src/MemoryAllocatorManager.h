@@ -12,6 +12,7 @@
 #define ALLOC_ARRAY(type, count) (type*) MemoryAllocatorManager::alloc(count, sizeof(type))
 #define ALLOC_RELEASE(object) MemoryAllocatorManager::free(object)
 #define ALLOC_COPY(source, type, count) (type*) MemoryAllocatorManager::copy(source, sizeof(type) * count)
+#define ALLOC_COPY_TO(source, destiny, type, count) MemoryAllocatorManager::copy(source, destiny, sizeof(type) * count)
 
 #ifdef __cplusplus
 	#define ALLOC_NEW(type) new (MemoryAllocatorManager::alloc(sizeof(type))) type
@@ -64,7 +65,12 @@ public:
 	/// <summary>
 	/// Copy the source to a new memory buffer
 	/// </summary>
-	API_INTERFACE static void* copy(void* source, size_t size) noexcept;
+	API_INTERFACE static void* copy(const void* source, size_t size) noexcept;
+
+	/// <summary>
+	/// Copy the source to the destiny
+	/// </summary>
+	API_INTERFACE static void copy(const void* source, void* destiny, size_t size) noexcept;
 
 	/// <summary>
 	/// Resize the current memory in manager

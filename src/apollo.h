@@ -1,5 +1,13 @@
 #pragma once
 
+#ifdef ENV_32BITS
+	#define SHIFT_BIT 1
+#elif ENV_64BITS
+	#define SHIFT_BIT 1i64
+#else
+	#error "Environment not 32 or 64-bit"
+#endif
+
 #ifdef WINDOWS
 	#ifdef API_IMPORT
 		#define API_INTERFACE __declspec(dllimport)		

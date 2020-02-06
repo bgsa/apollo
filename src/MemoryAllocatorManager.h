@@ -4,8 +4,10 @@
 #include "apollo.h"
 #include <mutex>
 
-#define ONE_MEGA sizeof(char) * 1024 * 1024
-#define DEFAULT_SIZE ONE_MEGA * 512
+#define ONE_KILOBYTE sizeof(char) * 1024
+#define ONE_MEGABYTE ONE_KILOBYTE * 1024
+#define ONE_GIGABYTE ONE_MEGABYTE * 1024
+#define DEFAULT_MEMORY_SIZE ONE_MEGABYTE * 512
 
 #define ALLOC(type) (type*)MemoryAllocatorManager::alloc(sizeof(type))
 #define ALLOC_SIZE(size) MemoryAllocatorManager::alloc(size)
@@ -17,7 +19,7 @@
 #ifdef __cplusplus
 	#define ALLOC_NEW(type) new (MemoryAllocatorManager::alloc(sizeof(type))) type
 	#define ALLOC_NEW_ARRAY(type, count) new (MemoryAllocatorManager::alloc(sizeof(type) * count)) type[count]
-	#define ALLOC_DELETE(object) ::operator delete(object); MemoryAllocatorManager::free(object)
+	#define ALLOC_DELETE(object, type) object->~type(); MemoryAllocatorManager::free(object)
 #endif
 
 class MemoryAllocatorManager
@@ -30,7 +32,7 @@ public:
 	/// <summary>
 	/// Define the initial size of memory
 	/// </summary>
-	API_INTERFACE static void init(size_t initialSize = DEFAULT_SIZE) noexcept;
+	API_INTERFACE static void init(size_t initialSize = DEFAULT_MEMORY_SIZE) noexcept;
 
 	/// <summary>
 	/// Get the memory size available in manager

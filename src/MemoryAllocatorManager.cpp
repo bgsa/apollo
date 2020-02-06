@@ -57,7 +57,7 @@ void MemoryAllocatorManager::init(size_t initialSize) noexcept
 	assert(initialPointer != NULL);
 
 	currentPointer = initialPointer;
-	lastPointer = ((int*)initialPointer) + initialSize;
+	lastPointer = (void*) ((size_t)initialPointer + initialSize);
 
 	locker.unlock();
 }
@@ -95,7 +95,9 @@ void* MemoryAllocatorManager::alloc(size_t size) noexcept
 
 	void* buffer = currentPointer;
 
-	currentPointer = ((int*)currentPointer) + size;
+	currentPointer = (void*) ((size_t)currentPointer + size);
+
+	assert(((size_t)lastPointer) > ((size_t)currentPointer));
 
 	locker.unlock();
 	return buffer;
@@ -129,24 +131,28 @@ void MemoryAllocatorManager::resize(size_t newSize) noexcept
 	assert(initialPointer != NULL);
 
 	currentPointer = initialPointer;
-	lastPointer = ((int*)initialPointer) + newSize;
+	lastPointer = (void*) ((size_t)initialPointer + newSize);
 
 	locker.unlock();
 }
 
 bool MemoryAllocatorManager::hasAvailableMemory(size_t size) noexcept
 {
-	return ((int*)lastPointer) - ((int*)currentPointer) + size > 0;
+#ifdef ENV_32BITS
+	return (__int32) (((size_t)lastPointer) - ((size_t)currentPointer) - size) > 0;
+#else
+	return (__int64)(((size_t)lastPointer) - ((size_t)currentPointer) - size) > 0;
+#endif
 }
 
 size_t MemoryAllocatorManager::memorySize() noexcept
 {
-	return ((int*)lastPointer) - ((int*)initialPointer);
+	return ((size_t)lastPointer) - ((size_t)initialPointer);
 }
 
 size_t MemoryAllocatorManager::availableMemorySize() noexcept
 {
-	return ((int*)lastPointer) - ((int*)currentPointer);
+	return ((size_t)lastPointer) - ((size_t)currentPointer);
 }
 
 void MemoryAllocatorManager::release() noexcept

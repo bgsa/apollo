@@ -11,6 +11,8 @@
 	#undef APIENTRY
 #endif
 #include <Windows.h>
+#undef min
+#undef max
 
 #include "StringHelper.h"
 #include "IFileManager.h"

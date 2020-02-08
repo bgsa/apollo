@@ -1,5 +1,7 @@
-#pragma once
+#ifndef IMAGE_JPEG_HEADER
+#define IMAGE_JPEG_HEADER
 
+#include "apollo.h"
 #include <fstream>
 #include "Image.h"
 
@@ -23,9 +25,9 @@ class ImageJPEG : public Image
 private:
 
 public:	
-	ColorRGBc getPixelRGB(int x, int y);
+	ColorRGBc getPixelRGB(sp_int x, sp_int y);
 	
-	static ImageJPEG * load(const char * filename)
+	static ImageJPEG * load(const sp_char* filename)
 	{
 		ImageJPEG *image = new ImageJPEG;
 		FILE *file;
@@ -43,3 +45,5 @@ public:
 	}
 
 };
+
+#endif // !IMAGE_JPEG_HEADER

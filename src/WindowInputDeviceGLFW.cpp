@@ -1,6 +1,6 @@
-#include "WindowInputDeviceGLFW.h"
-
 #ifdef GLFW
+
+#include "WindowInputDeviceGLFW.h"
 
 WindowInputDeviceGLFW* instanceWindowDevice;
 
@@ -22,7 +22,7 @@ static void onClose(GLFWwindow* window)
 		instanceWindowDevice->close();
 }
 
-static void onResize(GLFWwindow* window, int width, int height)
+static void onResize(GLFWwindow* window, sp_int width, sp_int height)
 {
 	if (instanceWindowDevice != nullptr)
 		instanceWindowDevice->resize(width, height);
@@ -54,19 +54,19 @@ void WindowInputDeviceGLFW::removeHandler(WindowInputDeviceHandler* handler)
 		handlers.erase(item);
 }
 
-void WindowInputDeviceGLFW::update(long long elapsedTime)
+void WindowInputDeviceGLFW::update(sp_longlong elapsedTime)
 {
 }
 
 void WindowInputDeviceGLFW::close()
 {
-	for (size_t i = 0; i < handlers.size(); i++)
+	for (sp_uinti = 0; i < handlers.size(); i++)
 		handlers[i]->onClose();
 }
 
-void WindowInputDeviceGLFW::resize(int width, int height)
+void WindowInputDeviceGLFW::resize(sp_int width, sp_int height)
 {
-	for (size_t i = 0; i < handlers.size(); i++)
+	for (sp_uint i = 0; i < handlers.size(); i++)
 		handlers[i]->onResize(width, height);
 }
 

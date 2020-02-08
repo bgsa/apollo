@@ -1,4 +1,5 @@
-#pragma once
+#ifndef WINDOW_INPUT_DEVICE_HEADER
+#define WINDOW_INPUT_DEVICE_HEADER
 
 #include "apollo.h"
 #include "InputDevice.h"
@@ -12,3 +13,5 @@ public:
 	API_INTERFACE virtual void removeHandler(WindowInputDeviceHandler* handler) = 0;
 
 };
+
+#endif // !WINDOW_INPUT_DEVICE_HEADER

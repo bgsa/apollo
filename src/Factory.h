@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FACTORY_HEADER
+#define FACTORY_HEADER
 
 #include "IFileManager.h"
 #include "Log.hpp"
@@ -32,3 +33,4 @@ public:
 
 };
 
+#endif // FACTORY_HEADER

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GlobalHeader.h"
+#include "apollo.h"
 
 template<typename T>
 class ColorRGBA
@@ -27,9 +27,9 @@ public:
 		Alpha = alpha;
 	}
 
-	API_INTERFACE ColorRGBA<float> normalizeColor() 
+	API_INTERFACE ColorRGBA<sp_float> normalizeColor() 
 	{
-		return ColorRGBA<float>(
+		return ColorRGBA<sp_float>(
 			Red / 255.0f,
 			Green / 255.0f,
 			Blue / 255.0f,
@@ -56,5 +56,5 @@ public:
 
 };
 
-typedef ColorRGBA<float> ColorRGBAf;
-typedef ColorRGBA<unsigned char> ColorRGBAc;
+typedef ColorRGBA<sp_float> ColorRGBAf;
+typedef ColorRGBA<sp_uchar> ColorRGBAc;

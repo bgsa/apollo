@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LOG_HEADER
+#define LOG_HEADER
 
 #include "apollo.h"
 #include <cstdio>
@@ -58,9 +59,11 @@ public:
 #endif
 	}
 
-	API_INTERFACE static void onError(int errorCode, const char* description)
+	API_INTERFACE static void onError(sp_int errorCode, const sp_char* description)
 	{
 		error("Error: " + std::string(description));
 	}
 
 };
+
+#endif // !LOG_HEADER

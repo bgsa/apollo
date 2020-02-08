@@ -2,36 +2,65 @@
 
 #include "apollo.h"
 #include <sstream>
-#include <vector>
+
+#ifdef __cplusplus
+	#include <vector>
+#endif // __cplusplus
+
+#define DEFAULT_STRING_LENGTH 256
 
 class StringHelper
 {
 public:
 
+	API_INTERFACE static inline sp_char* crate(sp_uint length = DEFAULT_STRING_LENGTH)
+	{
+		sp_char* buffer = ALLOC_ARRAY(sp_char, length);
+		buffer[length] = END_OF_STRING;
+
+		return buffer;
+	}
+
+	API_INTERFACE static inline void copy(const sp_char* source, sp_char* destination, sp_uint maxLength = 1024)
+	{
+		const sp_uint sourceLength = strnlen_s(source, maxLength);
+
+		strcpy_s(destination, SIZEOF_CHAR * (sourceLength + 1), source);
+
+		destination[sourceLength] = '\0';
+	}
+
+	API_INTERFACE static inline void append(const sp_char* source, sp_char* destination, sp_uint destinationLength)
+	{
+		strcat_s(destination, SIZEOF_CHAR * destinationLength, source);
+	}
+	
+#ifdef __cplusplus
+
 	static std::string toLowerCase(std::string value)
 	{
-		char* stringAsArray = (char*)value.c_str();
+		sp_char* stringAsArray = (sp_char*)value.c_str();
 
-		for (size_t i = 0; i < value.length(); i++)
-			stringAsArray[i] = (char) tolower(stringAsArray[i]);
+		for (sp_uint i = 0; i < value.length(); i++)
+			stringAsArray[i] = (sp_char) tolower(stringAsArray[i]);
 
 		return std::string(stringAsArray);
 	}
 
 	static std::string toUpperCase(std::string value)
 	{
-		char* stringAsArray = (char*) value.c_str();
+		sp_char* stringAsArray = (sp_char*) value.c_str();
 
-		for (size_t i = 0; i < value.length(); i++)
-			stringAsArray[i] = (char) toupper(stringAsArray[i]);
+		for (sp_uint i = 0; i < value.length(); i++)
+			stringAsArray[i] = (sp_char) toupper(stringAsArray[i]);
 
 		return std::string(stringAsArray);
 	}
 
-	static bool startWith(std::string text, std::string value)
+	static sp_bool startWith(std::string text, std::string value)
 	{
-		size_t textLength = text.length();
-		size_t valueLength = value.length();
+		sp_uint textLength = text.length();
+		sp_uint valueLength = value.length();
 
 		if (valueLength > textLength)
 			return false;
@@ -41,13 +70,13 @@ public:
 		return std::strcmp(startSubstring.c_str(), value.c_str()) == 0;
 	}
 
-	static bool endWith(const char * text, const char * suffix)
+	static sp_bool endWith(const sp_char* text, const sp_char* suffix)
 	{
 		if (text == nullptr || suffix == nullptr)
 			return false;
 
-		size_t textLength = strlen(text);
-		size_t suffixLength = strlen(suffix);
+		sp_uint textLength = strlen(text);
+		sp_uint suffixLength = strlen(suffix);
 
 		if (suffixLength > textLength)
 			return false;
@@ -63,12 +92,12 @@ public:
 		return os.str();
 	}
 
-	static std::vector<std::string> split(std::string text, const char* separator)
+	static std::vector<std::string> split(std::string text, const sp_char* separator)
 	{
 		std::vector<std::string> result;
-		char *nextToken;
+		sp_char *nextToken;
 
-		char* values = strtok_s( (char*) text.c_str(), separator, &nextToken);
+		sp_char* values = strtok_s( (sp_char*) text.c_str(), separator, &nextToken);
 
 		while (values != nullptr)
 		{
@@ -78,6 +107,8 @@ public:
 
 		return result;
 	}
+
+#endif // __cplusplus
 
 };
 

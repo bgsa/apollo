@@ -1,10 +1,11 @@
-#pragma once
-
 #ifdef GLFW
 
-#include <algorithm>
+#ifndef WINDOW_INPUT_DEVICE_GLFW_HEADER
+#define WINDOW_INPUT_DEVICE_GLFW_HEADER
+
 #include "apollo.h"
 #include "WindowInputDevice.h"
+#include <algorithm>
 
 class WindowInputDeviceGLFW : public WindowInputDevice
 {
@@ -19,13 +20,15 @@ public:
 	API_INTERFACE static WindowInputDeviceGLFW* getInstance();
 
 	API_INTERFACE void init(GLFWwindow* window);
-	API_INTERFACE void update(long long elapsedTime);
+	API_INTERFACE void update(sp_longlong elapsedTime);
 
 	API_INTERFACE void close();
-	API_INTERFACE void resize(int width, int height);
+	API_INTERFACE void resize(sp_int width, sp_int height);
 
 	API_INTERFACE void addHandler(WindowInputDeviceHandler* handler);
 	API_INTERFACE void removeHandler(WindowInputDeviceHandler* handler);
 };
 
-#endif
+#endif // !WINDOW_INPUT_DEVICE_GLFW_HEADER
+
+#endif // GLFW

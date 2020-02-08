@@ -26,5 +26,5 @@ public:
 	}
 };
 
-typedef ColorRGB<float> ColorRGBf;
-typedef ColorRGB<unsigned char> ColorRGBc;
+typedef ColorRGB<sp_float> ColorRGBf;
+typedef ColorRGB<sp_uchar> ColorRGBc;

@@ -1,6 +1,6 @@
 #include "ImageBMP.h"
 
-ColorRGBc ImageBMP::getPixelRGB(int x, int y)
+ColorRGBc ImageBMP::getPixelRGB(sp_int x, sp_int y)
 {
 	int width = getWidth();
 

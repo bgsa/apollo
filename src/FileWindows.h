@@ -1,6 +1,7 @@
 #ifdef WINDOWS
 
-#pragma once
+#ifndef FILE_WINDOWS_HEADER
+#define FILE_WINDOWS_HEADER
 
 #include <fstream>
 #include "apollo.h"
@@ -14,11 +15,13 @@ private:
 public:
 	API_INTERFACE FileWindows(std::string filename);
 
-	API_INTERFACE void read(void* buffer, size_t size, size_t count = 1);
-	API_INTERFACE void seek(long offset);
+	API_INTERFACE void read(void* buffer, sp_uint size, sp_uint count = 1);
+	API_INTERFACE void seek(sp_long offset);
 	API_INTERFACE void close();
 
 	API_INTERFACE ~FileWindows();
 };
 
-#endif
+#endif // !FILE_WINDOWS_HEADER
+
+#endif // WINDOWS

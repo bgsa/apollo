@@ -1,4 +1,5 @@
-#pragma once
+#ifndef POINTER_INPUT_DEVICE_HANDLER_HEADER
+#define POINTER_INPUT_DEVICE_HANDLER_HEADER
 
 #include "apollo.h"
 #include "InputDeviceHandler.h"
@@ -16,20 +17,20 @@ enum WheelDirection {
 };
 
 struct MouseState {
-	float position[2];
-	bool leftButtonPressed;
-	bool rightButtonPressed;
-	bool middleButtonPressed;
+	sp_float position[2];
+	sp_bool leftButtonPressed;
+	sp_bool rightButtonPressed;
+	sp_bool middleButtonPressed;
 };
 
 class MouseEvent 
 {
 public:
 	MouseButton button;	
-	float previousPosition[2];
-	float currentPosition[2];
+	sp_float previousPosition[2];
+	sp_float currentPosition[2];
 	WheelDirection direction;
-	float scrollOffset[2];
+	sp_float scrollOffset[2];
 	MouseState state;
 
 	void log() {
@@ -62,3 +63,5 @@ public:
 
 	virtual void onMouseEnter(MouseEvent& e) {};
 };
+
+#endif // !POINTER_INPUT_DEVICE_HANDLER_HEADER

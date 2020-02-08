@@ -1,6 +1,7 @@
+/*
+
 #include "HttpConnectionManager.h"
 
-/*
 #ifdef WINDOWS
 
 HttpConnection* HttpConnectionManager::createConnection() 

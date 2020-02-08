@@ -1,6 +1,7 @@
 #ifdef QT_ENABLED
 
-#pragma once
+#ifndef DISPLAY_DEVICE_QT_HEADER
+#define DISPLAY_DEVICE_QT_HEADER
 
 #ifdef Q_COMPILER_CONSTEXPR
 	#undef Q_COMPILER_CONSTEXPR
@@ -27,3 +28,5 @@ public:
 };
 
 #endif
+
+#endif // !DISPLAY_DEVICE_QT_HEADER

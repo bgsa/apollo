@@ -12,19 +12,19 @@
 #pragma pack(push, 1)
 struct WavHeader
 {
-	unsigned char RIFF[4];
-	unsigned int Size;
-	unsigned char WAVE[4];
-	unsigned char FMT[4];
-	unsigned int SizeFmt;
-	unsigned short FormatTag;
-	unsigned short Channels;
-	unsigned int SampleRate;
-	unsigned int AvgBytesPerSec;
-	unsigned short nBlockAlign;
-	unsigned short nBitsperSample;
-	unsigned char Reserved[4];
-	unsigned int DataSize;
+	sp_uchar RIFF[4];
+	sp_uint Size;
+	sp_uchar WAVE[4];
+	sp_uchar FMT[4];
+	sp_uint SizeFmt;
+	sp_ushort FormatTag;
+	sp_ushort Channels;
+	sp_uint SampleRate;
+	sp_uint AvgBytesPerSec;
+	sp_ushort nBlockAlign;
+	sp_ushort nBitsperSample;
+	sp_uchar Reserved[4];
+	sp_uint DataSize;
 };
 #pragma pack(pop)
 
@@ -37,7 +37,7 @@ private:
 	ALuint bufferID;
 		
 	ALvoid* data;
-	size_t dataSize;
+	sp_uint dataSize;
 	ALsizei frequence = 22050;
 	ALenum format;
 
@@ -45,22 +45,22 @@ private:
 	ALenum getFormat(WavHeader header);
 
 public:
-	void init(string filename);
+	void init(std::string filename);
 	
 	int getState();
 
-	float getVolume();
+	sp_float getVolume();
 	void setVolume(float volume);
 
-	float getPitch();
-	void setPitch(float pitch);
+	sp_float getPitch();
+	void setPitch(sp_float pitch);
 
-	bool isLooping();
-	void setLooping(bool inLooping);		
+	sp_bool isLooping();
+	void setLooping(sp_bool inLooping);		
 
-	bool isPlaying();
-	bool isStopped();
-	bool isPaused();
+	sp_bool isPlaying();
+	sp_bool isStopped();
+	sp_bool isPaused();
 
 	void play();	
 	void pause();

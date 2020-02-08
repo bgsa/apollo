@@ -4,18 +4,20 @@
 
 std::vector<PointerInputDeviceHandler*> handlersPointer;
 
-float* getMousePosition()
+sp_float* getMousePosition()
 {
 	//int screenHeight = RendererSettings::getInstance()->getHeight();
-	int screenHeight = QGuiApplication::primaryScreen()->geometry().height();
+
+	sp_int screenHeight = QGuiApplication::primaryScreen()->geometry().height();
 
 	QPoint globalCursorPosition = QCursor::pos();
 	QRect mouseScreenGeometry = QGuiApplication::primaryScreen()->geometry();
 	QPoint localCursorPosition = globalCursorPosition - mouseScreenGeometry.topLeft();
 
-	float* position = new float[2];
-	position[0] = float(localCursorPosition.x());
-	position[1] = screenHeight - float(localCursorPosition.y());
+
+	sp_float* position = ALLOC_ARRAY(sp_float, 2);
+	position[0] = sp_float(localCursorPosition.x());
+	position[1] = screenHeight - sp_float(localCursorPosition.y());
 
 	return position;
 }
@@ -24,11 +26,11 @@ MouseState getMouseState()
 {
 	Qt::MouseButtons mouseButtonState = QGuiApplication::mouseButtons();
 
-	bool leftButtonPressed = mouseButtonState.testFlag(Qt::MouseButton::LeftButton);
-	bool rightButtonPressed = mouseButtonState.testFlag(Qt::MouseButton::RightButton);
-	bool middleButtonPressed = mouseButtonState.testFlag(Qt::MouseButton::MiddleButton);
+	sp_bool leftButtonPressed = mouseButtonState.testFlag(Qt::MouseButton::LeftButton);
+	sp_bool rightButtonPressed = mouseButtonState.testFlag(Qt::MouseButton::RightButton);
+	sp_bool middleButtonPressed = mouseButtonState.testFlag(Qt::MouseButton::MiddleButton);
 	
-	float* currentPosition = getMousePosition();
+	sp_float* currentPosition = getMousePosition();
 
 	return MouseState{ {currentPosition[0], currentPosition[1]}, leftButtonPressed, rightButtonPressed, middleButtonPressed };
 }
@@ -73,11 +75,11 @@ void PointerInputDeviceQT::removeHandler(PointerInputDeviceHandler* handler)
 		handlersPointer.erase(item);
 }
 
-void PointerInputDeviceQT::update(long long elapsedTime)
+void PointerInputDeviceQT::update(sp_longlong elapsedTime)
 {
 }
 
-bool PointerInputDeviceQT::eventFilter(QObject* object, QEvent *event)
+sp_bool PointerInputDeviceQT::eventFilter(QObject* object, QEvent *event)
 {
 	QMouseEvent  *mouseEvent = nullptr;
 	MouseEvent e;
@@ -94,8 +96,8 @@ bool PointerInputDeviceQT::eventFilter(QObject* object, QEvent *event)
 		e.previousPosition[0] = previousPosition[0];
 		e.previousPosition[1] = previousPosition[1];
 
-		e.currentPosition[0] = float(mouseEvent->pos().x());
-		e.currentPosition[1] = float(mouseEvent->pos().y());
+		e.currentPosition[0] = sp_float(mouseEvent->pos().x());
+		e.currentPosition[1] = sp_float(mouseEvent->pos().y());
 
 		e.state = {
 			{e.currentPosition[0], e.currentPosition[1]},
@@ -120,8 +122,8 @@ bool PointerInputDeviceQT::eventFilter(QObject* object, QEvent *event)
 		e.previousPosition[0] = previousPosition[0];
 		e.previousPosition[1] = previousPosition[1];
 
-		e.currentPosition[0] = float(mouseEvent->pos().x());
-		e.currentPosition[1] = float(mouseEvent->pos().y());
+		e.currentPosition[0] = sp_float(mouseEvent->pos().x());
+		e.currentPosition[1] = sp_float(mouseEvent->pos().y());
 
 		e.button = getButtonPressed(mouseEvent);
 
@@ -143,8 +145,8 @@ bool PointerInputDeviceQT::eventFilter(QObject* object, QEvent *event)
 		e.previousPosition[0] = previousPosition[0];
 		e.previousPosition[1] = previousPosition[1];
 
-		e.currentPosition[0] = float(mouseEvent->pos().x());
-		e.currentPosition[1] = float(mouseEvent->pos().y());
+		e.currentPosition[0] = sp_float(mouseEvent->pos().x());
+		e.currentPosition[1] = sp_float(mouseEvent->pos().y());
 
 		e.button = getButtonPressed(mouseEvent);
 
@@ -164,8 +166,8 @@ bool PointerInputDeviceQT::eventFilter(QObject* object, QEvent *event)
 		e.previousPosition[0] = previousPosition[0];
 		e.previousPosition[1] = previousPosition[1];
 
-		e.currentPosition[0] = float(mouseEvent->pos().x());
-		e.currentPosition[1] = float(mouseEvent->pos().y());
+		e.currentPosition[0] = sp_float(mouseEvent->pos().x());
+		e.currentPosition[1] = sp_float(mouseEvent->pos().y());
 
 		e.button = getButtonPressed(mouseEvent);
 
@@ -186,8 +188,8 @@ bool PointerInputDeviceQT::eventFilter(QObject* object, QEvent *event)
 		e.state = getMouseState();
 		e.direction = wheelEvent->delta() > 0 ? WheelDirection::UP : WheelDirection::DOWN;
 
-		e.scrollOffset[0] = float(delta.x());
-		e.scrollOffset[1] = float(delta.y());
+		e.scrollOffset[0] = sp_float(delta.x());
+		e.scrollOffset[1] = sp_float(delta.y());
 
 		for (PointerInputDeviceHandler* handler : handlersPointer)
 			handler->onScroll(e);
@@ -204,8 +206,8 @@ bool PointerInputDeviceQT::eventFilter(QObject* object, QEvent *event)
 		e.previousPosition[0] = previousPosition[0];
 		e.previousPosition[1] = previousPosition[1];
 
-		e.currentPosition[0] = float(mouseEvent->pos().x());
-		e.currentPosition[1] = float(mouseEvent->pos().y());
+		e.currentPosition[0] = sp_float(mouseEvent->pos().x());
+		e.currentPosition[1] = sp_float(mouseEvent->pos().y());
 
 		e.button = getButtonPressed(mouseEvent);
 

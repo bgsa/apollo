@@ -3,22 +3,22 @@
 Image::Image() {
 }
 
-int Image::getWidth() 
+sp_int Image::getWidth() 
 {
 	return width;
 }
 
-int Image::getHeight()
+sp_int Image::getHeight()
 {
 	return height;
 }
 
-unsigned char * Image::getData() 
+sp_uchar* Image::getData() 
 {
 	return data;
 }
 
-unsigned int Image::getColorFormat()
+sp_uint Image::getColorFormat()
 {
 	return colorFormat;
 }

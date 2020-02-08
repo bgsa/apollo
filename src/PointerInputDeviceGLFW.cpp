@@ -1,20 +1,20 @@
-#include "PointerInputDeviceGLFW.h"
-
 #ifdef GLFW
+
+#include "PointerInputDeviceGLFW.h"
 
 GLFWwindow* mouseWindow;
 std::vector<PointerInputDeviceHandler*> handlersPointer;
 Vec2f previousPointerPositionDevice = { 0.0f, 0.0f };
 
-void onClick(GLFWwindow* window, int button, int action, int mods)
+void onClick(GLFWwindow* window, sp_int button, sp_int action, sp_int mods)
 {
-	double posx, posy;
+	sp_double posx, posy;
 	glfwGetCursorPos(mouseWindow, &posx, &posy);
 
-	int screenHeight = RendererSettings::getInstance()->getHeight();
+	sp_int screenHeight = RendererSettings::getInstance()->getHeight();
 
 	MouseEvent e;
-	e.currentPosition = Vec2f{ float(posx), screenHeight - float(posy) };
+	e.currentPosition = Vec2f{ sp_float(posx), screenHeight - sp_float(posy) };
 
 	switch (button)
 	{
@@ -39,13 +39,13 @@ void onClick(GLFWwindow* window, int button, int action, int mods)
 			handler->onMouseUp(e);
 }
 
-void onMove(GLFWwindow* window, double posx, double posy)
+void onMove(GLFWwindow* window, sp_double posx, sp_double posy)
 {
 	int screenHeight = RendererSettings::getInstance()->getHeight();
 
 	MouseEvent e;
 	e.previousPosition = previousPointerPositionDevice;
-	e.currentPosition = Vec2f{ float(posx), screenHeight - float(posy) };
+	e.currentPosition = Vec2f{ sp_float(posx), screenHeight - sp_float(posy) };
 
 	int leftButtonState = glfwGetMouseButton(mouseWindow, GLFW_MOUSE_BUTTON_LEFT);
 	int rightButtonState = glfwGetMouseButton(mouseWindow, GLFW_MOUSE_BUTTON_RIGHT);
@@ -66,24 +66,24 @@ void onMove(GLFWwindow* window, double posx, double posy)
 
 MouseState getMouseState()
 {
-	double posx, posy;
+	sp_double posx, posy;
 	glfwGetCursorPos(mouseWindow, &posx, &posy);
 
-	int screenHeight = RendererSettings::getInstance()->getHeight();
-	Vec2f position{ float(posx), screenHeight - float(posy) };
+	sp_int screenHeight = RendererSettings::getInstance()->getHeight();
+	Vec2f position{ sp_float(posx), screenHeight - sp_float(posy) };
 
-	int leftButtonState = glfwGetMouseButton(mouseWindow, GLFW_MOUSE_BUTTON_LEFT);
-	int rightButtonState = glfwGetMouseButton(mouseWindow, GLFW_MOUSE_BUTTON_RIGHT);
-	int middleButtonState = glfwGetMouseButton(mouseWindow, GLFW_MOUSE_BUTTON_MIDDLE);
+	sp_int leftButtonState = glfwGetMouseButton(mouseWindow, GLFW_MOUSE_BUTTON_LEFT);
+	sp_int rightButtonState = glfwGetMouseButton(mouseWindow, GLFW_MOUSE_BUTTON_RIGHT);
+	sp_int middleButtonState = glfwGetMouseButton(mouseWindow, GLFW_MOUSE_BUTTON_MIDDLE);
 
-	bool leftButtonPressed = leftButtonState == GLFW_PRESS;
-	bool rightButtonPressed = rightButtonState == GLFW_PRESS;
-	bool middleButtonPressed = middleButtonState == GLFW_PRESS;
+	sp_bool leftButtonPressed = leftButtonState == GLFW_PRESS;
+	sp_bool rightButtonPressed = rightButtonState == GLFW_PRESS;
+	sp_bool middleButtonPressed = middleButtonState == GLFW_PRESS;
 
 	return MouseState{ position, leftButtonPressed, rightButtonPressed, middleButtonPressed };
 }
 
-void onScroll(GLFWwindow* window, double xoffset, double yoffset)
+void onScroll(GLFWwindow* window, sp_double xoffset, sp_double yoffset)
 {
 	MouseState state = getMouseState();
 	WheelDirection direction = WheelDirection::UP;
@@ -97,7 +97,7 @@ void onScroll(GLFWwindow* window, double xoffset, double yoffset)
 	MouseEvent e;
 	e.currentPosition = state.position;
 	e.direction = direction;
-	e.scrollOffset = Vec2f(float(xoffset), float(yoffset));
+	e.scrollOffset = Vec2f(sp_float(xoffset), sp_float(yoffset));
 
 	for (PointerInputDeviceHandler* handler : handlersPointer)
 		handler->onScroll(e);
@@ -127,7 +127,7 @@ void PointerInputDeviceGLFW::removeHandler(PointerInputDeviceHandler* handler)
 		handlersPointer.erase(item);
 }
 
-void PointerInputDeviceGLFW::update(long long elapsedTime)
+void PointerInputDeviceGLFW::update(sp_longlong elapsedTime)
 {
 }
 

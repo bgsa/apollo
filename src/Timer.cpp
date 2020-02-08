@@ -1,11 +1,11 @@
 #include "Timer.h"
 
-long long timeCounter = 0;
-int fpsCounter = 0;
+sp_longlong timeCounter = 0;
+sp_int fpsCounter = 0;
 
 void Timer::calculateFramesPerSecond() 
 {
-	bool oneSecondPassed = timeCounter > 1000;
+	sp_bool oneSecondPassed = timeCounter > 1000;
 
 	if (oneSecondPassed)
 	{
@@ -34,28 +34,28 @@ void Timer::update()
 	calculateFramesPerSecond();
 }
 
-long long Timer::getElapsedTime()
+sp_longlong Timer::getElapsedTime()
 {
 	return deltaTime.count();
 }
 
-int Timer::getFramesPerSecond()
+sp_int Timer::getFramesPerSecond()
 {
 	return framesPerSecond;
 }
 
-float Timer::getFramePerSecondLimit() 
+sp_float Timer::getFramePerSecondLimit()
 {
 	return framePerSecondLimit;
 }
 
-void Timer::setFramePerSecondLimit(float limit) 
+void Timer::setFramePerSecondLimit(sp_float limit)
 {
 	framePerSecondLimit = limit;
 	skipTick = 1000.0f / limit;
 }
 
-float Timer::getSkipTick()
+sp_float Timer::getSkipTick()
 {
 	return skipTick;
 }

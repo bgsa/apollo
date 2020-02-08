@@ -1,8 +1,8 @@
 #include "ImageJPEG.h"
 
-ColorRGBc ImageJPEG::getPixelRGB(int x, int y) 
+ColorRGBc ImageJPEG::getPixelRGB(sp_int x, sp_int y)
 {
-	int width = getWidth();
+	sp_int width = getWidth();
 
 	ColorRGBc color(
 		data[y * width + x],

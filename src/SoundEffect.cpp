@@ -5,8 +5,8 @@
 
 ALenum SoundEffect::getFormat(WavHeader header)
 {
-	bool isStereo = header.Channels == 2;
-	bool has16bits = header.SizeFmt == 16;
+	sp_bool isStereo = header.Channels == 2;
+	sp_bool has16bits = header.SizeFmt == 16;
 
 	if (isStereo) 
 	{
@@ -56,9 +56,9 @@ void SoundEffect::init(string filename)
 	setVolume(DEFAULT_VOLUME);
 }
 
-float SoundEffect::getPitch()
+sp_float SoundEffect::getPitch()
 {
-	float pitch;
+	sp_float pitch;
 	alGetSourcef(sourceID, AL_PITCH, &pitch);
 
 	return pitch;
@@ -68,26 +68,26 @@ void SoundEffect::setPitch(float pitch)
 	alSourcef(sourceID, AL_PITCH, pitch);
 }
 
-bool SoundEffect::isLooping()
+sp_bool SoundEffect::isLooping()
 {
 	int looping;
 	alGetSourcei(sourceID, AL_GAIN, &looping);
 
 	return looping == 1;
 }
-void SoundEffect::setLooping(bool inLooping)
+void SoundEffect::setLooping(sp_bool inLooping)
 {
 	alSourcei(sourceID, AL_LOOPING, inLooping);
 }
 
-float SoundEffect::getVolume() 
+sp_float SoundEffect::getVolume()
 {
-	float volume;
+	sp_float volume;
 	alGetSourcef(sourceID, AL_GAIN, &volume);
 
 	return volume;
 }
-void SoundEffect::setVolume(float volume)
+void SoundEffect::setVolume(sp_float volume)
 {
 	alSourcef(sourceID, AL_GAIN, volume);
 }
@@ -116,17 +116,17 @@ int SoundEffect::getState()
 	return currentState;
 }
 
-bool SoundEffect::isPlaying()
+sp_bool SoundEffect::isPlaying()
 {
 	return getState() == AL_PLAYING;
 }
 
-bool SoundEffect::isStopped()
+sp_bool SoundEffect::isStopped()
 {
 	return getState() == AL_STOPPED;
 }
 
-bool SoundEffect::isPaused()
+sp_bool SoundEffect::isPaused()
 {
 	return getState() == AL_PAUSED;
 }

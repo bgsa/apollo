@@ -1,11 +1,11 @@
-#include "KeyboardInputDeviceGLFW.h"
-
 #ifdef GLFW
+
+#include "KeyboardInputDeviceGLFW.h"
 
 std::vector<KeyboardInputDeviceHandler*> handlersKeyboard;
 GLFWwindow* keyboardWindow;
 
-void onKeyboardEvent(GLFWwindow* window, int key, int scancode, int action, int mods)
+void onKeyboardEvent(GLFWwindow* window, sp_int key, sp_int scancode, sp_int action, sp_int mods)
 {
 	if (action == GLFW_PRESS)
 		for ( KeyboardInputDeviceHandler* handler : handlersKeyboard)
@@ -47,12 +47,12 @@ void KeyboardInputDeviceGLFW::removeHandler(KeyboardInputDeviceHandler* handler)
 		handlersKeyboard.erase(item);
 }
 
-void KeyboardInputDeviceGLFW::update(long long elapsedTime)
+void KeyboardInputDeviceGLFW::update(sp_longlong elapsedTime)
 {
 
 }
 
-bool KeyboardInputDeviceGLFW::isKeyPressed(int virtualKey)
+bool KeyboardInputDeviceGLFW::isKeyPressed(sp_int virtualKey)
 {
 	return isKeyPressedA(virtualKey);
 }

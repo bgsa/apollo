@@ -11,7 +11,7 @@ void ThreadUser::stop()
 	isRunning = false;
 }
 
-void ThreadUser::sleep(size_t miliseconds)
+void ThreadUser::sleep(sp_uint miliseconds)
 {	
 	std::this_thread::sleep_for(std::chrono::milliseconds(miliseconds));
 }

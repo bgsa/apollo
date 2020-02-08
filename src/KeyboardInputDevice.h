@@ -1,4 +1,5 @@
-#pragma once
+#ifndef KEYBOARD_INPUT_DEVICE_HEADER
+#define KEYBOARD_INPUT_DEVICE_HEADER
 
 #include "InputDevice.h"
 #include "KeyboardInputDeviceHandler.h"
@@ -11,3 +12,5 @@ public:
 	API_INTERFACE virtual void removeHandler(KeyboardInputDeviceHandler* handler) = 0;
 
 };
+
+#endif // !KEYBOARD_INPUT_DEVICE_HEADER

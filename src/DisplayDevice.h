@@ -1,4 +1,7 @@
-#pragma once
+#ifndef  DISPLAY_DEVICE_HEADER
+#define DISPLAY_DEVICE_HEADER
+
+#include "apollo.h"
 
 class DisplayDevice
 {
@@ -7,15 +10,15 @@ private:
 	int height;
 
 protected:
-	void setWidth(int width);
-	void setHeight(int height);
+	void setWidth(sp_int width);
+	void setHeight(sp_int height);
 
 public:
-	virtual int getWidth() {
+	virtual sp_int getWidth() {
 		return width;
 	}
 
-	virtual int getHeight() {
+	virtual sp_int getHeight() {
 		return height;
 	}
 
@@ -23,3 +26,5 @@ public:
 
 	virtual ~DisplayDevice() {}
 };
+
+#endif // ! DISPLAY_DEVICE_HEADER

@@ -8,11 +8,11 @@
 #include <locale.h>
 #include <cassert>
 
-bool checkFile(std::ifstream& file, const char * filename)
+bool checkFile(std::ifstream& file, const sp_char * filename)
 {
     if ( file.fail() || file.bad() || ! file.is_open() ) 
     {
-		const size_t errorMessageLength = 1024;
+		const sp_uint errorMessageLength = 1024;
 		char errorMessage[errorMessageLength];
 		strerror_s(errorMessage, errorMessageLength, errno);
 
@@ -66,7 +66,7 @@ std::vector<std::string> FileManagerWindows::getFilesFromFolder(std::string fold
 	return files;
 }
 
-bool FileManagerWindows::exists(const char * filename)
+bool FileManagerWindows::exists(const sp_char* filename)
 {
 	std::ifstream file(filename);
 
@@ -77,7 +77,7 @@ bool FileManagerWindows::exists(const char * filename)
     return result;
 }
 
-std::string FileManagerWindows::readTextFile(const char * filename)
+std::string FileManagerWindows::readTextFile(const sp_char* filename)
 {
 	std::ifstream file(filename, std::ios::in);
 
@@ -99,18 +99,18 @@ std::string FileManagerWindows::readTextFile(const char * filename)
 	return std::string(content);
 }
 
-char* FileManagerWindows::readBinaryFile(const char * filename, size_t& size)
+char* FileManagerWindows::readBinaryFile(const sp_char* filename, sp_uint& size)
 {
 	std::ifstream file(filename, std::ios::in | std::ios::binary | std::ios::ate);
 
 	assert(file.is_open());
 	assert(file.good());
 
-	size = (size_t) file.tellg();
+	size = (sp_uint) file.tellg();
 
 	file.seekg(0, std::ios::beg);
 
-	char* content = (char*) std::malloc(size);
+	sp_char* content = (sp_char*) ALLOC_SIZE(size);
 
 	file.read(content, size);
 

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IMAGE_FACTORY_HEADER
+#define IMAGE_FACTORY_HEADER
 
 #include "StringHelper.h"
 #include "Image.h"
@@ -10,7 +11,7 @@ class ImageFactory
 {
 public:
 
-    static Image * load(const char * filename) 
+    static Image * load(const sp_char* filename) 
 	{
 		Image *image = nullptr;
 
@@ -29,3 +30,5 @@ else
 	}
 
 };
+
+#endif // !IMAGE_FACTORY_HEADER

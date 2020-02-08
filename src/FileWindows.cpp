@@ -7,12 +7,12 @@ FileWindows::FileWindows(std::string filename)
 	fopen_s(&file, filename.c_str(), "rb");
 }
 
-void FileWindows::read(void* buffer, size_t size, size_t count)
+void FileWindows::read(void* buffer, sp_uint size, sp_uint count)
 {
 	fread(buffer, size, count, file);
 }
 
-void FileWindows::seek(long offset)
+void FileWindows::seek(sp_long offset)
 {
 	fseek(file, offset, SEEK_SET);
 }
@@ -28,4 +28,4 @@ FileWindows::~FileWindows()
 		fclose(file);
 }
 
-#endif
+#endif //WINDOWS

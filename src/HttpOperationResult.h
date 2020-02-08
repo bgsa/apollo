@@ -1,25 +1,28 @@
-#pragma once
+#ifndef HTTP_OPERATION_RESULT_HEADER
+#define HTTP_OPERATION_RESULT_HEADER
 
+#include "apollo.h"
 #include <iostream>
 
 struct DownloadData
 {
 	void* content = malloc(1);
-	size_t size = 0;
+	sp_uint size = 0;
 };
 
 class HttpOperationResult
 {
 public:
-	long httpStatusCode;
+	sp_long httpStatusCode;
 	DownloadData data;
 
-	double connectionSpeed;
-	double downloadTime;
-	double totalSize;
+	sp_double connectionSpeed;
+	sp_double downloadTime;
+	sp_double totalSize;
 
 	/*
 	~HttpOperationResult();
 	*/
 };
 
+#endif // !HTTP_OPERATION_RESULT_HEADER

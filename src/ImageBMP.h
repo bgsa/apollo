@@ -1,4 +1,5 @@
-#pragma once
+#ifndef IMAGE_BMP_HEADER
+#define IMAGE_BMP_HEADER
 
 #include "apollo.h"
 #include <fstream>
@@ -13,25 +14,25 @@
 #pragma pack(push, 2)
 typedef struct
 {
-	char type[2];
-	unsigned int   size;
-	unsigned short reserved1;
-	unsigned short reserved2;
-	unsigned int   offBits;
+	sp_char   type[2];
+	sp_uint   size;
+	sp_ushort reserved1;
+	sp_ushort reserved2;
+	sp_uint   offBits;
 } BMPFileHeader;
 typedef struct
 {
-	unsigned int   size;            /* Size of info header */
-	int            width;           /* Width of image */
-	int            height;          /* Height of image */
-	unsigned short planes;          /* Number of color planes */
-	unsigned short bitCount;        /* Number of bits per pixel */
-	unsigned int   compression;     /* Type of compression to use (0=none, 1=RLE-8, 2=RLE-4) */
-	unsigned int   sizeImage;       /* Size of image data (including padding) */
-	int            xPelsPerMeter;   /* X pixels per meter - horizontal resolution in pixels per meter (unreliable) */
-	int            yPelsPerMeter;   /* Y pixels per meter - vertical resolution in pixels per meter (unreliable) */
-	unsigned int   colorsUsed;      /* Number of colors used */
-	unsigned int   colorsImportant; /* Number of important colors */
+	sp_uint   size;            /* Size of info header */
+	sp_int            width;           /* Width of image */
+	sp_int            height;          /* Height of image */
+	sp_ushort planes;          /* Number of color planes */
+	sp_ushort bitCount;        /* Number of bits per pixel */
+	sp_uint   compression;     /* Type of compression to use (0=none, 1=RLE-8, 2=RLE-4) */
+	sp_uint   sizeImage;       /* Size of image data (including padding) */
+	sp_int            xPelsPerMeter;   /* X pixels per meter - horizontal resolution in pixels per meter (unreliable) */
+	sp_int            yPelsPerMeter;   /* Y pixels per meter - vertical resolution in pixels per meter (unreliable) */
+	sp_uint   colorsUsed;      /* Number of colors used */
+	sp_uint   colorsImportant; /* Number of important colors */
 } BMPHeaderInfo;
 #pragma pack(pop)
 
@@ -41,13 +42,13 @@ private:
 
 public:
 	
-	ColorRGBc getPixelRGB(int x, int y);
+	ColorRGBc getPixelRGB(sp_int x, sp_int y);
 	
-	static ImageBMP * load(const char * filename)
+	static ImageBMP * load(const sp_char* filename)
 	{
-		const unsigned int opengl_RGB = 0x1907; //TODO: REMOVE!
+		const sp_uint opengl_RGB = 0x1907; //TODO: REMOVE!
 
-		ImageBMP *image = new ImageBMP;
+		ImageBMP *image = ALLOC_NEW(ImageBMP)();
 		image->colorFormat = opengl_RGB;
 
 		BMPFileHeader fileHeader;
@@ -64,8 +65,8 @@ public:
 		image->width = headerInfo.width;
 		image->height = headerInfo.height;
 
-		unsigned int size = 3 * image->width * image->height;
-		image->data = new unsigned char[size]; // allocate 3 bytes per pixel
+		sp_uint size = 3 * image->width * image->height;
+		image->data = ALLOC_ARRAY(sp_uchar, size); // allocate 3 bytes per pixel
 		AAsset_read(file, image->data, size);
 
 		AAsset_close(file);
@@ -80,11 +81,11 @@ public:
 		image->width = headerInfo.width;
 		image->height = headerInfo.height;
 
-		fseek(file, 54 * sizeof(char), SEEK_SET); //move o cursor para a posição 54 do arquivo, contando do início
+		fseek(file, 54 * SIZEOF_CHAR, SEEK_SET); //move o cursor para a posição 54 do arquivo, contando do início
 		
 		unsigned int size = 3 * image->width * image->height;
-		image->data = new unsigned char[size]; // allocate 3 bytes per pixel
-		fread(image->data, sizeof(unsigned char), size, file); // read the rest of the data at once
+		image->data = ALLOC_ARRAY(sp_uchar, size); // allocate 3 bytes per pixel
+		fread(image->data, SIZEOF_UCHAR, size, file); // read the rest of the data at once
 
 		fclose(file);
 #endif
@@ -123,3 +124,5 @@ public:
 	}
 
 };
+
+#endif // !IMAGE_BMP_HEADER

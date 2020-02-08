@@ -1,6 +1,7 @@
 #ifdef QT_ENABLED
 
-#pragma once
+#ifndef WINDOW_INPUT_DEVICE_QT_HEADER
+#define WINDOW_INPUT_DEVICE_QT_HEADER
 
 #ifdef Q_COMPILER_CONSTEXPR
 	#undef Q_COMPILER_CONSTEXPR
@@ -26,12 +27,12 @@ public:
 	API_INTERFACE static WindowInputDeviceQT* getInstance();
 
 	API_INTERFACE void init(QWidget* window);
-	API_INTERFACE void update(long long elapsedTime);
+	API_INTERFACE void update(sp_longlong elapsedTime);
 
 	API_INTERFACE void show();
 	API_INTERFACE void hide();
-	API_INTERFACE void move(int previousPosition[2], int newPosition[2]);
-	API_INTERFACE void resize(int width, int height);
+	API_INTERFACE void move(sp_int previousPosition[2], sp_int newPosition[2]);
+	API_INTERFACE void resize(sp_int width, sp_int height);
 	API_INTERFACE void close();
 	API_INTERFACE void maximize();
 	API_INTERFACE void fullscreen();
@@ -41,8 +42,10 @@ public:
 	API_INTERFACE void addHandler(WindowInputDeviceHandler* handler);
 	API_INTERFACE void removeHandler(WindowInputDeviceHandler* handler);
 
-	API_INTERFACE bool eventFilter(QObject *object, QEvent *event);
+	API_INTERFACE sp_bool eventFilter(QObject *object, QEvent *event);
 
 };
 
-#endif
+#endif // !WINDOW_INPUT_DEVICE_QT_HEADER
+
+#endif // QT_ENABLED

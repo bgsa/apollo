@@ -31,63 +31,63 @@ void WindowInputDeviceQT::removeHandler(WindowInputDeviceHandler* handler)
 		handlers.erase(item);
 }
 
-void WindowInputDeviceQT::update(long long elapsedTime)
+void WindowInputDeviceQT::update(sp_longlong elapsedTime)
 {
 }
 
 void WindowInputDeviceQT::close()
 {
-	for (size_t i = 0; i < handlers.size(); i++)
+	for (sp_uint i = 0; i < handlers.size(); i++)
 		handlers[i]->onClose();
 }
 
-void WindowInputDeviceQT::move(int previousPosition[2], int newPosition[1])
+void WindowInputDeviceQT::move(sp_int previousPosition[2], sp_int newPosition[1])
 {
 	WindowMoveEvent moveEvent(previousPosition, newPosition);
 
-	for (size_t i = 0; i < handlers.size(); i++)
+	for (sp_uint i = 0; i < handlers.size(); i++)
 		handlers[i]->onMove(moveEvent);
 }
 
 void WindowInputDeviceQT::show()
 {
-	for (size_t i = 0; i < handlers.size(); i++)
+	for (sp_uint i = 0; i < handlers.size(); i++)
 		handlers[i]->onShow();
 }
 
 void WindowInputDeviceQT::hide()
 {
-	for (size_t i = 0; i < handlers.size(); i++)
+	for (sp_uint i = 0; i < handlers.size(); i++)
 		handlers[i]->onHide();
 }
 
 void WindowInputDeviceQT::maximize()
 {
-	for (size_t i = 0; i < handlers.size(); i++)
+	for (sp_uint i = 0; i < handlers.size(); i++)
 		handlers[i]->onMaximized();
 }
 
 void WindowInputDeviceQT::fullscreen()
 {
-	for (size_t i = 0; i < handlers.size(); i++)
+	for (sp_uint i = 0; i < handlers.size(); i++)
 		handlers[i]->onFullScreen();
 }
 
 void WindowInputDeviceQT::focusIn()
 {
-	for (size_t i = 0; i < handlers.size(); i++)
+	for (sp_uint i = 0; i < handlers.size(); i++)
 		handlers[i]->onFocusIn();
 }
 
 void WindowInputDeviceQT::focusOut() 
 {
-	for (size_t i = 0; i < handlers.size(); i++)
+	for (sp_uint i = 0; i < handlers.size(); i++)
 		handlers[i]->onFocusOut();
 }
 
-void WindowInputDeviceQT::resize(int width, int height)
+void WindowInputDeviceQT::resize(sp_int width, sp_int height)
 {
-	for (size_t i = 0; i < handlers.size(); i++)
+	for (sp_uint i = 0; i < handlers.size(); i++)
 		handlers[i]->onResize(width, height);
 }
 
@@ -106,8 +106,8 @@ bool WindowInputDeviceQT::eventFilter(QObject* object, QEvent *event)
 		QPoint previousPosition = moveEvent->oldPos();
 		QPoint newPosition = moveEvent->oldPos();
 
-		int prevPos[2] = { previousPosition.x(), previousPosition.y() };
-		int newPos[2] = { newPosition.x(), newPosition.y() };
+		sp_int prevPos[2] = { previousPosition.x(), previousPosition.y() };
+		sp_int newPos[2] = { newPosition.x(), newPosition.y() };
 
 		move(prevPos, newPos);
 

@@ -1,13 +1,13 @@
 #pragma once
 
-#include "GlobalHeader.h"
+#include "apollo.h"
 //#include "IEquatable.h"
 
 class Object //: public IEquatable<Object>
 {
 public:
 
-	virtual string toString() = 0;
+	virtual sp_char* toString() = 0;
 
 };
 

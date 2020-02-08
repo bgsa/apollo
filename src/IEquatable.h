@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I_EQUATABLE_HEADER
+#define I_EQUATABLE_HEADER
 
 template <typename T>
 class IEquatable {
@@ -10,3 +11,5 @@ public:
 	}
 
 };
+
+#endif // !I_EQUATABLE_HEADER

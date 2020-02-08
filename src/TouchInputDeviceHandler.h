@@ -1,24 +1,24 @@
-#pragma once
+#ifndef TOUCH_INPUT_DEVICE_HANDLER_HEADER
+#define TOUCH_INPUT_DEVICE_HANDLER_HEADER
 
+#include "apollo.h"
 #include <map>
 #include "InputDeviceHandler.h"
 
-using namespace std;
-
 struct TouchPosition {
-	float x;
-	float y;
+	sp_float x;
+	sp_float y;
 };
 
 struct TouchEvent {
-	int pointerId;
-	float pointerSize;
+	sp_int pointerId;
+	sp_float pointerSize;
 	TouchPosition position;
 };
 
 struct TouchItem {
-	int pointerId;
-	float pointerSize;
+	sp_int pointerId;
+	sp_float pointerSize;
 	TouchPosition initialPosition;
 	TouchPosition previousPosition;
 	TouchPosition currentPosition;
@@ -27,14 +27,14 @@ struct TouchItem {
 class TouchInputDeviceHandler : public InputDeviceHandler
 {
 private:
-	map<int, TouchItem*> *touchItems;
+	std::map<sp_int, TouchItem*> *touchItems;
 
 public:
-	void updateTouchItems(map<int, TouchItem*> *touchItems) {
+	void updateTouchItems(std::map<sp_int, TouchItem*> *touchItems) {
 		this->touchItems = touchItems;
 	}
 
-	map<int, TouchItem*> *getTouchPointers() {
+	std::map<sp_int, TouchItem*> *getTouchPointers() {
 		return touchItems;
 	}
 
@@ -45,3 +45,5 @@ public:
 	virtual void onTouchUp(TouchItem* touchItem) {};
 	virtual void onTouchMove(TouchItem* touchItem) {};
 };
+
+#endif // !TOUCH_INPUT_DEVICE_HANDLER_HEADER

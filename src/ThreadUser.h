@@ -8,12 +8,12 @@ class ThreadUser
 {
 private:
 	std::thread* instance;
-	bool isRunning = false;
+	sp_bool isRunning = false;
 	
 public:
 	void start();
 	void stop();
-	void sleep(size_t miliseconds);
+	void sleep(sp_uint miliseconds);
 	virtual void run() = 0;
 	void join();
 	void detach();

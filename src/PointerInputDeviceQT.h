@@ -1,6 +1,7 @@
 #ifdef QT_ENABLED
 
-#pragma once
+#ifndef POINTER_INPUT_DEVICE_QT_HEADER
+#define POINTER_INPUT_DEVICE_QT_HEADER
 
 #ifdef Q_COMPILER_CONSTEXPR
 	#undef Q_COMPILER_CONSTEXPR
@@ -19,16 +20,18 @@ class PointerInputDeviceQT : public QObject, public PointerInputDevice
 
 private:
 	QWidget* window = nullptr;
-	float previousPosition[2] = {0.0f, 0.0f};
+	sp_float previousPosition[2] = {0.0f, 0.0f};
 
 public:
 	API_INTERFACE void init(QWidget* window);
-	API_INTERFACE void update(long long elapsedTime);
+	API_INTERFACE void update(sp_longlong elapsedTime);
 
 	API_INTERFACE void addHandler(PointerInputDeviceHandler* handler);
 	API_INTERFACE void removeHandler(PointerInputDeviceHandler* handler);
 
-	API_INTERFACE bool eventFilter(QObject *object, QEvent *event);
+	API_INTERFACE sp_bool eventFilter(QObject *object, QEvent *event);
 };
 
-#endif
+#endif // !POINTER_INPUT_DEVICE_QT_HEADER
+
+#endif // QT_ENABLED

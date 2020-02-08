@@ -8,12 +8,12 @@ void KeyboardInputDeviceQT::init(QWidget* window)
 	QGuiApplication::instance()->installEventFilter(this);
 }
 
-void KeyboardInputDeviceQT::update(long long elapsedTime) 
+void KeyboardInputDeviceQT::update(sp_longlong elapsedTime) 
 {
 
 }
 
-bool KeyboardInputDeviceQT::isKeyPressed(int virtualKey)
+bool KeyboardInputDeviceQT::isKeyPressed(sp_int virtualKey)
 {
 	//QK
 	//QGuiApplication::keyboardModifiers().
